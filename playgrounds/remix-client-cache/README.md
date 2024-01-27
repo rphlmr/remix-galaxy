@@ -12,6 +12,8 @@ This end to a mess 😅.
 
 So I have implemented a custom CacheProvider that will merge the new posts with the cached ones.
 
+# Setup
+
 ## Step 1 - Install dependencies
 > 💡 If you are not in the `playgrounds/remix-client-cache` directory, run these commands with `npm run -w playgrounds/remix-client-cache <command>`
 
@@ -34,3 +36,18 @@ npm run db:seed
 ```sh
 npm run dev
 ```
+
+# Want to play?
+
+Run Drizzle studio:
+```sh
+npm run db:studio
+```
+
+Then scroll to the bottom (around post #200).
+
+Change post #1 title (on drizzle studio).
+
+Look at your cache, 'old values' are still here 😎.
+
+Scroll to top, and check your cache again, 'old values' are gone 😎.
