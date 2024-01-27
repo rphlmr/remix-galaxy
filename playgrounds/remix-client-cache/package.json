@@ -12,7 +12,8 @@
 		"start": "remix-serve ./build/index.js",
 		"db:migration:generate": "drizzle-kit generate:sqlite",
 		"db:migration:drop": "drizzle-kit drop",
-		"db:migration:deploy": "tsx drizzle/migrate.ts",
+		"db:migration:run": "tsx drizzle/migrate.ts",
+		"db:seed": "tsx drizzle/seed.ts",
 		"db:studio": "drizzle-kit studio",
 		"typecheck": "tsc"
 	},
@@ -26,9 +27,11 @@
 		"isbot": "^4.4.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-intersection-observer": "^9.5.3",
 		"remix-client-cache": "^1.0.1"
 	},
 	"devDependencies": {
+		"@faker-js/faker": "^8.4.0",
 		"@remix-galaxy/eslint-config": "*",
 		"@remix-galaxy/typescript-config": "*",
 		"@remix-run/dev": "^2.5.1",
