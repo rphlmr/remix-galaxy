@@ -1,0 +1,45 @@
+{
+	"name": "@remix-galaxy/remix-client-cache",
+	"version": "0.0.0",
+	"private": true,
+	"license": "MIT",
+	"sideEffects": false,
+	"type": "module",
+	"scripts": {
+		"build": "remix build",
+		"dev": "remix dev --manual",
+		"lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+		"start": "remix-serve ./build/index.js",
+		"db:migration:generate": "drizzle-kit generate:sqlite",
+		"db:migration:drop": "drizzle-kit drop",
+		"db:migration:deploy": "tsx drizzle/migrate.ts",
+		"db:studio": "drizzle-kit studio",
+		"typecheck": "tsc"
+	},
+	"dependencies": {
+		"@remix-run/css-bundle": "^2.5.1",
+		"@remix-run/node": "^2.5.1",
+		"@remix-run/react": "^2.5.1",
+		"@remix-run/serve": "^2.5.1",
+		"better-sqlite3": "^9.3.0",
+		"drizzle-orm": "^0.29.3",
+		"isbot": "^4.4.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"remix-client-cache": "^1.0.1"
+	},
+	"devDependencies": {
+		"@remix-galaxy/eslint-config": "*",
+		"@remix-galaxy/typescript-config": "*",
+		"@remix-run/dev": "^2.5.1",
+		"@types/better-sqlite3": "^7.6.9",
+		"@types/react": "^18.2.48",
+		"@types/react-dom": "^18.2.18",
+		"drizzle-kit": "^0.20.13",
+		"tsx": "^4.7.0",
+		"typescript": "^5.3.3"
+	},
+	"engines": {
+		"node": ">=20"
+	}
+}
