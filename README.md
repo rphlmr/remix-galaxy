@@ -8,7 +8,9 @@
   </p>
 </div>
 
-![rphlmr_remix_galaxy](https://github.com/rphlmr/supa-fly-stack/assets/20722140/06a0310e-f97b-4cd9-9eaa-e380c4d184bf)
+<div align="center">
+  <img src="https://github.com/rphlmr/supa-fly-stack/assets/20722140/06a0310e-f97b-4cd9-9eaa-e380c4d184bf" alt="rphlmr_remix_galaxy" />
+</div>
 
 ---
 
