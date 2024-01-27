@@ -1,0 +1,35 @@
+{
+	"name": "@remix-galaxy/remix-app",
+	"version": "0.0.0",
+	"license": "MIT",
+	"private": true,
+	"sideEffects": false,
+	"type": "module",
+	"scripts": {
+		"build": "remix build",
+		"dev": "remix dev --manual",
+		"lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+		"start": "remix-serve ./build/index.js",
+		"typecheck": "tsc"
+	},
+	"dependencies": {
+		"@remix-run/css-bundle": "^2.5.1",
+		"@remix-run/node": "^2.5.1",
+		"@remix-run/react": "^2.5.1",
+		"@remix-run/serve": "^2.5.1",
+		"isbot": "^4.4.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@remix-galaxy/eslint-config": "*",
+		"@remix-galaxy/typescript-config": "*",
+		"@remix-run/dev": "^2.5.1",
+		"@types/react": "^18.2.48",
+		"@types/react-dom": "^18.2.18",
+		"typescript": "^5.3.3"
+	},
+	"engines": {
+		"node": ">=20"
+	}
+}
