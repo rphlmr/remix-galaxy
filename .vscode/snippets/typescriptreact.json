@@ -1,0 +1,34 @@
+{
+  "Remix Run loader": {
+    "prefix": "rmxloader",
+    "body": [
+      "import { makeAppError } from '~/utils/error.server'",
+      "import { error, json } from '~/utils/http.server';",
+      "export async function loader({ }: LoaderFunctionArgs) {",
+      "try {",
+      "\t//$1",
+      "} catch (cause) {",
+      "\tconst reason = makeAppError(cause);",
+      "\tthrow json(error(reason), { status: reason.status });",
+      "}",
+      "}"
+    ],
+    "description": "Remix Run loader"
+  },
+  "Remix Run action": {
+    "prefix": "rmxaction",
+    "body": [
+      "import { makeAppError } from '~/utils/error.server'",
+      "import { error, json } from '~/utils/http.server';",
+      "export async function action({ }: ActionFunctionArgs) {",
+      "try {",
+      "\t//$1",
+      "} catch (cause) {",
+      "\tconst reason = makeAppError(cause);",
+      "\treturn json(error(reason), { status: reason.status });",
+      "}",
+      "}"
+    ],
+    "description": "Remix Run action"
+  }
+}

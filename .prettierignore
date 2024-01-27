@@ -1,0 +1,6 @@
+build
+public/build
+
+**/.*
+**/*lock.json
+**/drizzle-orm

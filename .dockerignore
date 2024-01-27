@@ -1,0 +1,16 @@
+**/.*
+!**/*.server
+**/node_modules
+**/public/build
+**/build
+**/decisions
+**/drizzle-orm
+**/drizzle.config.json
+**/test
+**/*test*
+**/vitest.config.ts
+**/.cache
+**/README.md
+**/fly.*
+**/Dockerfile
+**/types

@@ -1,0 +1,24 @@
+{
+  "Try Catch": {
+    "prefix": "trycatch",
+    "body": ["try {", "\t$2", "} catch (cause) {", "\tthrow new $1", "}"],
+    "description": "Try Catch"
+  },
+  "Service Function": {
+    "prefix": "fnsrv",
+    "body": [
+      "function ${1:label}() {",
+      "try {",
+      "\t//$2",
+      "} catch (cause) {",
+      "throw new AppError({",
+      "cause,",
+      "message: 'error',",
+      "label: 'Unknown 🐞',",
+      "});",
+      "}",
+      "}"
+    ],
+    "description": "Function with Try Catch"
+  }
+}
