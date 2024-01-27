@@ -23,25 +23,25 @@
 
 > A good starting for a new project or to learn about Remix Run.
 
-- `@remix-galaxy/psst`
-  > A [PWA](https://github.com/remix-pwa/monorepo) with native push notifications.
-  > <br />
-  > 👉 `hono` + `supabase` + `drizzle` + `tailwindcss` + `shadcn/ui`
+-   `@remix-galaxy/psst` `🔥 coming soon`
+    > A [PWA](https://github.com/remix-pwa/monorepo) with native push notifications.
+    > <br />
+    > 👉 `hono` + `supabase` + `drizzle` + `tailwindcss` + `shadcn/ui`
 
 ### Playgrounds
 
 > Some experiments
 
-- `@remix-galaxy/remix-hono-vite`
-  > Vite, [Hono](https://hono.dev) and [Remix Hono](https://github.com/sergiodxa/remix-hono)
+-   `@remix-galaxy/remix-hono-vite` `🆕 new`
+    > Vite, [Hono](https://hono.dev) and [Remix Hono](https://github.com/sergiodxa/remix-hono)
 
 ### Packages
 
 > Things I use in multiple projects
 
-- `@remix-galaxy/ui`: shadcn/ui components
-- `@remix-galaxy/eslint-config`: base `eslint` configurations
-- `@remix-galaxy/typescript-config`: base `tsconfig.json` used throughout the monorepo
+-   `@remix-galaxy/ui`: shadcn/ui components
+-   `@remix-galaxy/eslint-config`: base `eslint` configurations
+-   `@remix-galaxy/typescript-config`: base `tsconfig.json` used throughout the monorepo
 
 Each package/stack is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -69,9 +69,9 @@ To install a package in a project, run the following command:
 
 ```
 cd remix-galaxy
-npm install --workspace=<workspace> <package>
+npm install -w <workspace> <package>
 # e.g.
-npm install --workspace=@remix-galaxy/psst @remix-galaxy/ui
+npm install -w @remix-galaxy/psst @remix-galaxy/ui
 ```
 
 > Note: Check the turbo docs: [Adding/removing/upgrading packages](https://turbo.build/repo/docs/handbook/package-installation#addingremovingupgrading-packages)
@@ -89,17 +89,17 @@ npm run build
 
 This Turborepo has some additional tools already setup for you:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+-   [TypeScript](https://www.typescriptlang.org/) for static type checking
+-   [ESLint](https://eslint.org/) for code linting
+-   [Prettier](https://prettier.io) for code formatting
 
 ## Useful Links
 
 Learn more about the power of Turborepo:
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+-   [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
+-   [Caching](https://turbo.build/repo/docs/core-concepts/caching)
+-   [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
+-   [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
+-   [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
+-   [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)

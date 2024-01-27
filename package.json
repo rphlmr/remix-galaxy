@@ -1,31 +1,31 @@
 {
-  "name": "@rphlmr/remix-galaxy",
-  "private": true,
-  "version": "1.0.0",
-  "description": "An opinionated collection of stuff built with Remix that I use for building my apps.",
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "clean-node-modules": "rm -rf ./**/node_modules",
-    "clean-turbo-cache": "rm -rf ./**/.turbo",
-    "format": "prettier --write ."
-  },
-  "author": "@rphlmr",
-  "license": "MIT",
-  "packageManager": "npm@10.1.0",
-  "workspaces": [
-    "stacks/*",
-    "packages/*"
-  ],
-  "devDependencies": {
-    "@remix-galaxy/eslint-config": "^0.0.0",
-    "@remix-galaxy/typescript-config": "^0.0.0",
-    "prettier": "^3.2.4",
-    "turbo": "^1.11.3"
-  },
-  "engines": {
-    "node": ">=20"
-  },
-  "prettier": {}
+	"name": "@rphlmr/remix-galaxy",
+	"author": "@rphlmr",
+	"license": "MIT",
+	"version": "1.0.0",
+	"private": true,
+	"description": "An opinionated collection of stuff built with Remix that I use for building my apps.",
+	"packageManager": "npm@10.1.0",
+	"workspaces": [
+		"stacks/*",
+		"packages/*",
+		"playgrounds/*"
+	],
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "turbo lint",
+		"clean-node-modules": "rm -rf {node_modules,package-lock.json} **/{node_modules,package-lock.json}",
+		"clean-turbo-cache": "rm -rf .turbo **/.turbo",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@remix-galaxy/eslint-config": "^0.0.0",
+		"@remix-galaxy/typescript-config": "^0.0.0",
+		"prettier": "^3.2.4",
+		"turbo": "^1.11.3"
+	},
+	"engines": {
+		"node": ">=20"
+	}
 }
