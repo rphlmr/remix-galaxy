@@ -60,7 +60,7 @@ To develop all apps and packages, run the following command:
 
 ```
 cd remix-galaxy
-npm run dev
+npm run -w <workspace> dev
 ```
 
 #### Install a npm package in a project

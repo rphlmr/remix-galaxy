@@ -13,7 +13,6 @@
 	],
 	"scripts": {
 		"build": "turbo build",
-		"dev": "turbo dev",
 		"lint": "turbo lint",
 		"new:remix-app": "npx create-remix@latest --template _templates/remix-app",
 		"clean-node-modules": "rm -rf {node_modules,package-lock.json} **/{node_modules,package-lock.json}",
