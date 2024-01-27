@@ -30,6 +30,8 @@
 	},
 	"devDependencies": {
 		"@hono/vite-dev-server": "^0.3.4",
+		"@remix-galaxy/eslint-config": "*",
+		"@remix-galaxy/typescript-config": "*",
 		"@remix-run/dev": "^2.5.1",
 		"@types/react": "^18.2.48",
 		"@types/react-dom": "^18.2.18",
