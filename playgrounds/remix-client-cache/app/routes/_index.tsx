@@ -11,7 +11,6 @@ import {
 } from "@remix-run/react";
 import { InView } from "react-intersection-observer";
 import {
-	type CacheAdapter,
 	cacheClientLoader,
 	createCacheAdapter,
 	useCachedLoaderData,
@@ -19,62 +18,7 @@ import {
 
 import { db } from "~/database/db.server";
 import { Post } from "~/database/schema.server";
-
-// Disclaimer: I assume the type here for simplicity.
-type LoaderData = SerializeFrom<typeof loader>;
-type CachedData = LoaderData | undefined;
-
-class SuperLocalStorage implements CacheAdapter {
-	key = "posts";
-
-	uniquePostById(posts: LoaderData["posts"]) {
-		return [
-			...new Map(
-				posts.filter(Boolean).map((item) => [item["id"], item]),
-			).values(),
-		];
-	}
-
-	mergePostsWithCache(posts: LoaderData["posts"]) {
-		const cachedData = this.getItem();
-		return this.uniquePostById([...cachedData.posts, ...posts]);
-	}
-
-	getItem() {
-		// Disclaimer: I assume the type here for simplicity.
-		return (
-			(JSON.parse(
-				localStorage.getItem(this.key) || "null",
-			) as CachedData) || { posts: [] }
-		);
-	}
-
-	async setItem(key: string, value: LoaderData) {
-		const cachedData = this.getItem();
-
-		// set the item in the database
-		return localStorage.setItem(
-			key,
-			JSON.stringify({
-				...cachedData,
-				...value,
-				posts: this.uniquePostById([
-					...cachedData.posts,
-					...value.posts,
-				]),
-			} satisfies LoaderData),
-		);
-	}
-
-	async removeItem(key: string) {
-		// remove the item from the database
-		return localStorage.removeItem(key);
-	}
-}
-
-const { adapter } = createCacheAdapter(() => new SuperLocalStorage()) as {
-	adapter: SuperLocalStorage | undefined;
-}; // uses localStorage behind the scenes
+import { PaginationStore, uniqueBy } from "~/utils";
 
 export const meta: MetaFunction = () => [{ title: "Remix Client Cache" }];
 
@@ -101,25 +45,48 @@ export function loader({ request }: LoaderFunctionArgs) {
 		.offset(page * limit)
 		.all();
 
-	return json({ posts });
+	return json({ posts, notCached: [{ v: false }], other: false });
 }
+
+type LoaderDataType = SerializeFrom<typeof loader>;
+
+const paginationStore = new PaginationStore<
+	LoaderDataType,
+	Pick<LoaderDataType, "posts">
+>({
+	key: "posts",
+	select: (loaderData) => ({
+		posts: loaderData.posts,
+	}),
+	transform: (store, loaderData) => {
+		const posts = uniqueBy("id", [
+			...(store?.posts ?? []),
+			...loaderData.posts,
+		]);
+		return {
+			posts,
+		};
+	},
+});
+
+const { adapter } = createCacheAdapter(() => paginationStore); // uses localStorage behind the scenes
 
 // Caches the loader data on the client
 export const clientLoader = (args: ClientLoaderFunctionArgs) =>
 	cacheClientLoader(args, {
-		// We pass our custom adapter to the clientLoader
 		adapter,
-		key: "posts",
+		key: paginationStore.key,
 	});
 
 // make sure you turn this flag on
 clientLoader.hydrate = true;
 
 export default function Index() {
-	const { posts } = useCachedLoaderData<typeof loader>({ adapter });
+	// You need it to trigger re-renders when the data changes in localStorage
+	useCachedLoaderData<typeof loader>({ adapter });
+	const allPosts = paginationStore.getItem()?.posts ?? [];
 	const [searchParams, setSearchParams] = useSearchParams();
 	const { limit, page } = getPageLimit(searchParams);
-	const allPosts = adapter ? adapter.mergePostsWithCache(posts) : posts;
 
 	return (
 		<div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
