@@ -22,7 +22,7 @@ So I have implemented a custom CacheProvider that will merge the new posts with 
 # Setup
 
 ## Step 1 - Install dependencies
-> **Note**
+> [!NOTE]
 > 
 > 💡 If you are not in the `playgrounds/remix-client-cache` directory, run these commands with `npm run -w playgrounds/remix-client-cache <command>`
 

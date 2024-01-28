@@ -8,7 +8,7 @@
 # Setup
 
 ## Step 1 - Install dependencies
-> **Note**
+> [!NOTE]
 > 
 > 💡 If you are not in the `<project/path>` directory, run these commands with `npm run -w <project/path> <command>`
 
