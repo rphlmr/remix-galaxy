@@ -7,6 +7,9 @@
 - [remix-client-cache](https://github.com/Code-Forge-Net/remix-client-cache)
 - Implements `react-intersection-observer` to handle an infinite scroll by page number and limit
 
+# TLDR
+ [👉 The code here](./app/routes/_index.tsx)
+
 # What I try to achieve
 Infinite scroll + client cache merged server data.
 
