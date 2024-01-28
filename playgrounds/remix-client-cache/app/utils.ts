@@ -4,19 +4,19 @@ type Select<T, Store> = (loaderData: T) => Store;
 type Transform<Store, T> = (store: Store | null, loaderData: T) => Store;
 
 /**
- * Custom CacheAdapter that uses localStorage to handle infinite scroll pagination.
+ * Custom CacheAdapter that uses localStorage to handle infinite scroll pagination or whatever you want, if you only want to store some slice of data from the loaderData.
  *
  * `LoaderData` - The data returned from the loader function.
  *
  * `Store` - The data shape you want to store in localStorage. It is the return type of the select function and the first argument of the transform function.
  */
-export class PaginationStore<LoaderData, Store extends Record<string, unknown>>
+export class CacheStorage<LoaderData, Store extends Record<string, unknown>>
 	implements CacheAdapter
 {
 	readonly key: string;
 
 	// You can swap out localStorage for sessionStorage 😎
-	private engine = typeof document !== "undefined" ? localStorage : undefined;
+	private engine: CacheAdapter | undefined;
 	private select: Select<LoaderData, Store>;
 	private transform: Transform<Store, LoaderData>;
 
@@ -32,14 +32,17 @@ export class PaginationStore<LoaderData, Store extends Record<string, unknown>>
 		key,
 		select,
 		transform,
+		engine,
 	}: {
 		key: string;
 		select: Select<LoaderData, Store>;
 		transform: Transform<Store, LoaderData>;
+		engine: CacheAdapter | undefined;
 	}) {
 		this.key = key;
 		this.select = select;
 		this.transform = transform;
+		this.engine = engine;
 	}
 
 	getItem(key = this.key): Store | null {

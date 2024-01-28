@@ -18,7 +18,7 @@ import {
 
 import { db } from "~/database/db.server";
 import { Post } from "~/database/schema.server";
-import { PaginationStore, uniqueBy } from "~/utils";
+import { CacheStorage, uniqueBy } from "~/utils";
 
 export const meta: MetaFunction = () => [{ title: "Remix Client Cache" }];
 
@@ -50,11 +50,12 @@ export function loader({ request }: LoaderFunctionArgs) {
 
 type LoaderDataType = SerializeFrom<typeof loader>;
 
-const paginationStore = new PaginationStore<
+const paginationStore = new CacheStorage<
 	LoaderDataType,
 	Pick<LoaderDataType, "posts">
 >({
 	key: "posts",
+	engine: typeof document !== "undefined" ? sessionStorage : undefined,
 	select: (loaderData) => ({
 		posts: loaderData.posts,
 	}),
