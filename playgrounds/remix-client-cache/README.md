@@ -11,7 +11,7 @@
  [👉 The code here](./app/routes/_index.tsx)
 
 # What I try to achieve
-Infinite scroll + client cache merged server data.
+Infinite scroll + client cache merged with server data.
 
 By default, cached values (our posts) will be swapped with new posts coming from the loader.
 
