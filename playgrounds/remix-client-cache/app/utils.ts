@@ -61,12 +61,12 @@ export class CacheStorage<LoaderData, Store extends Record<string, unknown>>
 	/**
 	 * setItem can receive existing store data or new data from loader
 	 */
-	setItem(key: string, value: LoaderData | Store) {
+	setItem(key: string, newData: LoaderData | Store) {
 		const store = this.getItem(key);
 
 		return this.engine?.setItem(
 			key,
-			JSON.stringify(this.transform(store, value)),
+			JSON.stringify(this.transform(store, newData)),
 		);
 	}
 

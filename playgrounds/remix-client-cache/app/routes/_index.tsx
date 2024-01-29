@@ -66,11 +66,11 @@ const paginationStore = new CacheStorage<
 	select: (loaderData) => ({
 		posts: loaderData.posts,
 	}),
-	transform: (store, loaderData) => {
-		let posts = _.concat(store?.posts || [], loaderData.posts);
+	transform: (store, newData) => {
+		let posts = _.concat(store?.posts || [], newData.posts);
 
-		if ("searchParams" in loaderData) {
-			const { limit, page } = loaderData.searchParams;
+		if ("searchParams" in newData) {
+			const { limit, page } = newData.searchParams;
 			const start = page === 0 ? 0 : page * limit;
 			const end = start + limit;
 
@@ -80,7 +80,7 @@ const paginationStore = new CacheStorage<
 					_.slice(store?.posts, start, end),
 					"id",
 				),
-				loaderData.posts,
+				newData.posts,
 			);
 		}
 
