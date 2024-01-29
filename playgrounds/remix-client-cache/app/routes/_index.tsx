@@ -9,6 +9,7 @@ import {
 	Link,
 	useSearchParams,
 } from "@remix-run/react";
+import _ from "lodash";
 import { InView } from "react-intersection-observer";
 import {
 	cacheClientLoader,
@@ -18,7 +19,7 @@ import {
 
 import { db } from "~/database/db.server";
 import { Post } from "~/database/schema.server";
-import { CacheStorage, uniqueBy } from "~/utils";
+import { CacheStorage } from "~/utils";
 
 export const meta: MetaFunction = () => [{ title: "Remix Client Cache" }];
 
@@ -45,7 +46,13 @@ export function loader({ request }: LoaderFunctionArgs) {
 		.offset(page * limit)
 		.all();
 
-	return json({ posts, notCached: [{ v: false }], other: false });
+	return json({
+		posts,
+		searchParams: {
+			page,
+			limit,
+		},
+	});
 }
 
 type LoaderDataType = SerializeFrom<typeof loader>;
@@ -55,15 +62,33 @@ const paginationStore = new CacheStorage<
 	Pick<LoaderDataType, "posts">
 >({
 	key: "posts",
-	engine: typeof document !== "undefined" ? sessionStorage : undefined,
+	engine: typeof document !== "undefined" ? localStorage : undefined,
 	select: (loaderData) => ({
 		posts: loaderData.posts,
 	}),
 	transform: (store, loaderData) => {
-		const posts = uniqueBy("id", [
-			...(store?.posts ?? []),
-			...loaderData.posts,
-		]);
+		let posts = _.concat(store?.posts || [], loaderData.posts);
+
+		if ("searchParams" in loaderData) {
+			const { limit, page } = loaderData.searchParams;
+			const start = page === 0 ? 0 : page * limit;
+			const end = start + limit;
+
+			posts = _.concat(
+				_.differenceBy(
+					store?.posts,
+					_.slice(store?.posts, start, end),
+					"id",
+				),
+				loaderData.posts,
+			);
+		}
+
+		posts = _.sortedUniqBy(
+			posts.sort((a, b) => a.id - b.id),
+			"id",
+		);
+
 		return {
 			posts,
 		};

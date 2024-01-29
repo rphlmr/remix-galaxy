@@ -1,7 +1,10 @@
 import { type CacheAdapter } from "remix-client-cache";
 
 type Select<T, Store> = (loaderData: T) => Store;
-type Transform<Store, T> = (store: Store | null, loaderData: T) => Store;
+type Transform<Store, T> = (
+	store: Store | undefined,
+	loaderData: T | Store,
+) => Store;
 
 /**
  * Custom CacheAdapter that uses localStorage to handle infinite scroll pagination or whatever you want, if you only want to store some slice of data from the loaderData.
@@ -26,7 +29,7 @@ export class CacheStorage<LoaderData, Store extends Record<string, unknown>>
 	 *
 	 * **select** - A function that selects the data you want to store from the loaderData.
 	 *
-	 * **transform** - A function that transforms the store and loaderData into a new store before saving.
+	 * **transform** - A function that transforms the store and loaderData | previousStore into a new store before saving.
 	 */
 	constructor({
 		key,
@@ -45,17 +48,20 @@ export class CacheStorage<LoaderData, Store extends Record<string, unknown>>
 		this.engine = engine;
 	}
 
-	getItem(key = this.key): Store | null {
+	getItem(key = this.key) {
 		const store = this.engine?.getItem(key);
 
 		if (!store) {
-			return null;
+			return;
 		}
 
 		return this.select(JSON.parse(store));
 	}
 
-	setItem(key: string, value: LoaderData) {
+	/**
+	 * setItem can receive existing store data or new data from loader
+	 */
+	setItem(key: string, value: LoaderData | Store) {
 		const store = this.getItem(key);
 
 		return this.engine?.setItem(
@@ -67,17 +73,4 @@ export class CacheStorage<LoaderData, Store extends Record<string, unknown>>
 	removeItem(key: string) {
 		return this.engine?.removeItem(key);
 	}
-}
-
-export function uniqueBy<Values extends Array<unknown>>(
-	key: keyof Values[number],
-	values: Values,
-) {
-	return [
-		...new Map(
-			values
-				.filter(Boolean)
-				.map((value: Values[number]) => [value[key], value]),
-		).values(),
-	];
 }
