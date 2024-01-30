@@ -107,6 +107,7 @@ module.exports = {
         "./app/entry.client.tsx",
         "./app/entry.server.tsx",
         "./app/routes/**/*.tsx",
+        "./server/index.ts",
       ],
       rules: {
         "import/no-default-export": "off",
