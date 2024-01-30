@@ -22,7 +22,9 @@ cd playgrounds/remix-hono
 npm install
 ```
 
-## Step 2 - Start the server
+## Step 2 - Duplicate `.env.example` to `.env`
+
+## Step 3 - Start the server
 ```sh
 npm run dev
 # or npm run -w playgrounds/remix-hono dev
