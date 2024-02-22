@@ -1,0 +1,10 @@
+{
+	"extends": "@remix-galaxy/typescript-config/base.json",
+	"include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"~/*": ["./app/*"]
+		}
+	}
+}

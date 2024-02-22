@@ -1,5 +1,5 @@
 {
-	"name": "@remix-galaxy/remix-hono",
+	"name": "@remix-galaxy/remix-hono-defer",
 	"private": true,
 	"sideEffects": false,
 	"scripts": {
@@ -11,13 +11,12 @@
 		"typecheck": "tsc"
 	},
 	"dependencies": {
-		"@hono/node-server": "^1.7.0",
+		"@hono/node-server": "^1.8.1",
 		"@paralleldrive/cuid2": "^2.2.2",
-		"@remix-run/css-bundle": "^2.5.1",
-		"@remix-run/node": "^2.5.1",
-		"@remix-run/react": "^2.5.1",
-		"@remix-run/serve": "^2.5.1",
-		"hono": "^4.0.0",
+		"@remix-run/node": "^2.6.0",
+		"@remix-run/react": "^2.6.0",
+		"@remix-run/serve": "^2.6.0",
+		"hono": "^4.0.2",
 		"isbot": "^4.1.0",
 		"path-to-regexp": "^6.2.1",
 		"pino": "^8.17.2",
@@ -27,10 +26,10 @@
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {
-		"@remix-run/dev": "^2.5.1",
+		"@remix-run/dev": "^2.6.0",
 		"@total-typescript/ts-reset": "^0.5.1",
-		"@types/react": "^18.2.20",
-		"@types/react-dom": "^18.2.7",
+		"@types/react": "^18.2.55",
+		"@types/react-dom": "^18.2.19",
 		"@typescript-eslint/eslint-plugin": "^6.7.4",
 		"dotenv-cli": "^7.3.0",
 		"eslint": "^8.38.0",

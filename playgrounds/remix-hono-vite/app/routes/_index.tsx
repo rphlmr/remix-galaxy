@@ -1,5 +1,11 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import {
+	unstable_createMemoryUploadHandler,
+	type ActionFunctionArgs,
+	type LoaderFunctionArgs,
+	type MetaFunction,
+	unstable_parseMultipartFormData,
+} from "@remix-run/node";
+import { Form, useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => [
 	{ title: "New Remix App" },
@@ -13,6 +19,18 @@ export function loader({ context }: LoaderFunctionArgs) {
 	return { message, appVersion };
 }
 
+export const action = async ({ request }: ActionFunctionArgs) => {
+	const uploadHandler = unstable_createMemoryUploadHandler();
+
+	const formData = await unstable_parseMultipartFormData(
+		request,
+		uploadHandler,
+	);
+	console.log("file", formData.get("file"));
+
+	return null;
+};
+
 export default function Index() {
 	const { message, appVersion } = useLoaderData<typeof loader>();
 	return (
@@ -24,6 +42,10 @@ export default function Index() {
 				Should persist state across
 				<input type="text" placeholder="HMR test" />
 			</label>
+			<Form encType="multipart/form-data" method="POST">
+				<input type="file" accept="image/*" name="file" />
+				<button type="submit">Submit</button>
+			</Form>
 			<ul>
 				<li>
 					<a
