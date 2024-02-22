@@ -4,8 +4,9 @@ import {
 	type LoaderFunctionArgs,
 	type MetaFunction,
 	unstable_parseMultipartFormData,
+	json,
 } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, useActionData, useLoaderData } from "@remix-run/react";
 
 export const meta: MetaFunction = () => [
 	{ title: "New Remix App" },
@@ -16,7 +17,7 @@ export function loader({ context }: LoaderFunctionArgs) {
 	const { appVersion } = context;
 	const message = "Hello World from Remix Vite loader";
 	console.log(message, appVersion);
-	return { message, appVersion };
+	return json({ message, appVersion });
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -28,23 +29,35 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 	);
 	console.log("file", formData.get("file"));
 
-	return null;
+	return json({ fileName: (formData.get("file") as File).name });
 };
 
 export default function Index() {
 	const { message, appVersion } = useLoaderData<typeof loader>();
+	const { fileName } = useActionData<typeof action>() ?? {};
 	return (
-		<div>
+		<div className="flex flex-col gap-4">
 			<h1 className="text-3xl font-bold text-purple-500">
-				Welcome to Remix Vite !
+				Welcome to Remix Vite!
 			</h1>
 			<label>
-				Should persist state across
-				<input type="text" placeholder="HMR test" />
+				Should persist state across HMR
+				<input type="text" placeholder="HMR test" className="ml-2" />
 			</label>
-			<Form encType="multipart/form-data" method="POST">
+			<Form
+				encType="multipart/form-data"
+				method="POST"
+				className="flex w-fit flex-col rounded-md border border-white bg-zinc-900 p-4 text-white"
+			>
+				<label className="text-white">Upload a file</label>
 				<input type="file" accept="image/*" name="file" />
-				<button type="submit">Submit</button>
+				<button
+					type="submit"
+					className="w-fit rounded-md bg-white p-2 text-black"
+				>
+					Submit
+				</button>
+				<span>File name after upload: {fileName}</span>
 			</Form>
 			<ul>
 				<li>

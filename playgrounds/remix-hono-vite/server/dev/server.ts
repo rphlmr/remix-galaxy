@@ -14,6 +14,6 @@ const viteDevServer =
  */
 export async function importDevBuild() {
 	return viteDevServer?.ssrLoadModule(
-		"virtual:remix/server-build" + "?t=" + Date.now(),
+		`virtual:remix/server-build?t=${Date.now()}`,
 	);
 }
