@@ -106,6 +106,7 @@ if (isProductionMode) {
 			port: Number(process.env.PORT) || 3000,
 		},
 		async (info) => {
+			// eslint-disable-next-line no-console
 			console.log(`🚀 Server started on port ${info.port}`);
 		},
 	);

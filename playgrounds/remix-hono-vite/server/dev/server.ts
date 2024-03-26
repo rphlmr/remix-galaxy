@@ -5,15 +5,14 @@ const viteDevServer =
 		: await import("vite").then((vite) =>
 				vite.createServer({
 					server: { middlewareMode: true },
+					appType: "custom",
 				}),
 			);
 
 /**
- * Load the dev server build and force reload it
- * @returns An up to date server build
+ * Load the dev server build
+ * @returns The server build
  */
 export async function importDevBuild() {
-	return viteDevServer?.ssrLoadModule(
-		`virtual:remix/server-build?t=${Date.now()}`,
-	);
+	return viteDevServer?.ssrLoadModule("virtual:remix/server-build");
 }
