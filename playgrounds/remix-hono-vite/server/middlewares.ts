@@ -7,7 +7,7 @@ import { createMiddleware } from "hono/factory";
  */
 export function cache(seconds: number) {
 	return createMiddleware(async (c, next) => {
-		if (!c.req.path.match(/\.[a-zA-Z0-9]+$/)) {
+		if (!c.req.path.match(/\.[a-zA-Z0-9]+$/) || c.req.path.endsWith(".data")) {
 			return next();
 		}
 		

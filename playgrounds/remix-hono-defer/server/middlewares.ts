@@ -9,7 +9,7 @@ import { getPath, getQueryStrings } from "hono/utils/url";
  */
 export function cache(seconds: number) {
 	return createMiddleware(async (c, next) => {
-		if (!c.req.path.match(/\.[a-zA-Z0-9]+$/)) {
+		if (!c.req.path.match(/\.[a-zA-Z0-9]+$/) || c.req.path.endsWith(".data")) {
 			return next();
 		}
 
@@ -28,17 +28,6 @@ enum LogPrefix {
 	Incoming = "<--",
 	Error = "xxx",
 }
-
-const humanize = (times: string[]) => {
-	const [delimiter, separator] = [",", "."];
-
-	const orderTimes = times.map((v) =>
-		v.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + delimiter),
-	);
-
-	return orderTimes.join(separator);
-};
-
 const time = (start: number) => {
 	const delta = Date.now() - start;
 	return delta + "ms";
