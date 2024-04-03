@@ -1,4 +1,4 @@
-import { type MiddlewareHandler } from "hono";
+import type { MiddlewareHandler } from "hono";
 import { createMiddleware } from "hono/factory";
 import { getPath, getQueryStrings } from "hono/utils/url";
 
@@ -9,7 +9,10 @@ import { getPath, getQueryStrings } from "hono/utils/url";
  */
 export function cache(seconds: number) {
 	return createMiddleware(async (c, next) => {
-		if (!c.req.path.match(/\.[a-zA-Z0-9]+$/) || c.req.path.endsWith(".data")) {
+		if (
+			!c.req.path.match(/\.[a-zA-Z0-9]+$/) ||
+			c.req.path.endsWith(".data")
+		) {
 			return next();
 		}
 

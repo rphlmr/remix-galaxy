@@ -1,4 +1,4 @@
-import { type CacheAdapter } from "remix-client-cache";
+import type { CacheAdapter } from "remix-client-cache";
 
 type Select<T, Store> = (loaderData: T) => Store;
 type Transform<Store, T> = (

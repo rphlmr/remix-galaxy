@@ -35,7 +35,7 @@ ENV NODE_ENV production
 COPY --from=pruner /app/out/full/ .
 COPY --from=dev-deps /app/ .
 COPY turbo.json turbo.json
-RUN turbo build --filter=$APP_PKG_NAME
+RUN turbo build --filter=$APP_PKG_NAME...
 
 # Final image
 FROM base AS runner

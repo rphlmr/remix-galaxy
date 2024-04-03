@@ -17,7 +17,7 @@ async function getProducts() {
 	return products;
 }
 
-export async function loader() {
+export function loader() {
 	return defer({
 		products: getProducts(),
 	});

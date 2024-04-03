@@ -1,13 +1,12 @@
 **/.*
 !**/*.server
 **/node_modules
-**/public/build
 **/build
 **/decisions
 **/drizzle-orm
 **/drizzle.config.json
 **/test
-**/*test*
+**/*.test.*
 **/vitest.config.ts
 **/.cache
 **/README.md

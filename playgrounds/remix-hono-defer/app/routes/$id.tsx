@@ -2,7 +2,7 @@ import { useLoaderData } from "@remix-run/react";
 
 import { data, json } from "~/utils/http.server";
 
-export async function loader({ params }: LoaderFunctionArgs) {
+export function loader({ params }: LoaderFunctionArgs) {
 	const id = params.id;
 
 	return json(

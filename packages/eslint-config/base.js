@@ -30,19 +30,18 @@ module.exports = {
     // @typescript-eslint
     // Note: you must disable the base rule as it can report incorrect errors
     "no-return-await": "off",
-    "no-unused-vars": "off",
-    // FIXME: these rules slow down the editor because they parse multiple times the code. I should retry when migrating to Remix Vite
-    // "@typescript-eslint/return-await": ["error", "in-try-catch"],
-    // // Note: you must disable the base rule as it can report incorrect errors
-    // "require-await": "off",
-    // "@typescript-eslint/require-await": "error",
-    // "@typescript-eslint/await-thenable": "error",
-    // "@typescript-eslint/switch-exhaustiveness-check": "error",
+    "@typescript-eslint/return-await": ["error", "in-try-catch"],
+    // Note: you must disable the base rule as it can report incorrect errors
+    "require-await": "off",
+    "@typescript-eslint/require-await": "error",
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/await-thenable": "error",
     "@typescript-eslint/no-duplicate-imports": "error",
+    "@typescript-eslint/no-import-type-side-effects": "error",
     "@typescript-eslint/consistent-type-imports": [
       "error",
       {
-        fixStyle: "inline-type-imports",
+        fixStyle: "separate-type-imports",
       },
     ],
     "@typescript-eslint/no-unused-vars": [

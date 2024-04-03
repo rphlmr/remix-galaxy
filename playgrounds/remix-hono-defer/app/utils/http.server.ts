@@ -10,7 +10,7 @@ import {
 	type Cookie,
 } from "@remix-run/node"; // 💡 Swap to cloudflare in one line. This is why I'm using this technique.
 
-import { type AppError } from "./error.server";
+import type { AppError } from "./error.server";
 import { Logger } from "./logger";
 
 /**

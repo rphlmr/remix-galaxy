@@ -1,5 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import { type Params } from "@remix-run/react";
+import type { Params } from "@remix-run/react";
 
 // The goal of this custom error class is to normalize our errors.
 
