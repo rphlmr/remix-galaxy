@@ -31,7 +31,7 @@ export const meta: MetaFunction = () => [
 	},
 ];
 
-export async function loader() {
+export function loader() {
 	return json(
 		data({
 			env: getBrowserEnv(),

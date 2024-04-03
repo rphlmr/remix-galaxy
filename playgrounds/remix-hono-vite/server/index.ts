@@ -4,7 +4,7 @@ import {
 	type AppLoadContext,
 	createCookieSessionStorage,
 } from "@remix-run/node";
-import { type ServerBuild } from "@remix-run/server-runtime";
+import type { ServerBuild } from "@remix-run/server-runtime";
 import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { remix } from "remix-hono/handler";
@@ -109,7 +109,7 @@ if (isProductionMode) {
 			...app,
 			port: Number(process.env.PORT) || 3000,
 		},
-		async (info) => {
+		(info) => {
 			// eslint-disable-next-line no-console
 			console.log(`🚀 Server started on port ${info.port}`);
 		},

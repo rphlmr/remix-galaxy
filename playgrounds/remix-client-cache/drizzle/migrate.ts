@@ -8,7 +8,7 @@ import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-async function runMigrate() {
+function runMigrate() {
 	const betterSqlite = new Database(`${__dirname}/sqlite.db`);
 
 	const db = drizzle(betterSqlite, { logger: true });
@@ -26,8 +26,10 @@ async function runMigrate() {
 	process.exit(0);
 }
 
-runMigrate().catch((err) => {
+try {
+	runMigrate();
+} catch (cause) {
 	console.error("❌ Migration failed");
-	console.error(err);
+	console.error(cause);
 	process.exit(1);
-});
+}

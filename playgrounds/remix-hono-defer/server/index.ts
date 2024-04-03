@@ -85,7 +85,7 @@ serve(
 				});
 			});
 
-			broadcastDevReady(build);
+			void broadcastDevReady(build);
 		}
 	},
 );
