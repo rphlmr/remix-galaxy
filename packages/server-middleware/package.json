@@ -1,0 +1,27 @@
+{
+  "name": "@remix-galaxy/server-middleware",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./src/index.ts"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
+  },
+  "dependencies": {
+    "hono": "^4.2.1"
+  },
+  "devDependencies": {
+    "@remix-galaxy/eslint-config": "^0.0.0",
+    "@remix-galaxy/typescript-config": "^0.0.0",
+    "typescript": "^5.4.3"
+  }
+}

@@ -1,5 +1,6 @@
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
+import { cache } from "@remix-galaxy/server-middleware";
 import {
 	type AppLoadContext,
 	createCookieSessionStorage,
@@ -9,8 +10,6 @@ import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { remix } from "remix-hono/handler";
 import { session } from "remix-hono/session";
-
-import { cache } from "server/middlewares";
 
 import { importDevBuild } from "./dev/server.js";
 

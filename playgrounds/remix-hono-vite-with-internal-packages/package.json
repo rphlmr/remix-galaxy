@@ -1,0 +1,52 @@
+{
+	"name": "@remix-galaxy/remix-hono-vite-with-internal-packages",
+	"private": true,
+	"version": "0.0.0",
+	"license": "MIT",
+	"sideEffects": false,
+	"type": "module",
+	"scripts": {
+		"build": "remix vite:build",
+		"dev": "vite --host",
+		"lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+		"start": "NODE_ENV=production SESSION_SECRET=s3cr3t node ./build/server/index.js",
+		"docker": "run-s docker:*",
+		"docker:build": "cd ../.. && docker build --no-cache -f playgrounds/remix-hono-vite-with-internal-packages/Dockerfile -t remix-hono-vite-with-internal-packages .",
+		"docker:run": "cd ../.. && docker run --rm -p 8080:8080 --env-file playgrounds/remix-hono-vite-with-internal-packages/.env remix-hono-vite-with-internal-packages",
+		"typecheck": "tsc"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.9.0",
+		"@remix-galaxy/server-middleware": "*",
+		"@remix-galaxy/hooks": "*",
+		"@remix-run/node": "^2.8.1",
+		"@remix-run/react": "^2.8.1",
+		"hono": "^4.1.4",
+		"isbot": "^5.1.2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"remix-hono": "^0.0.16"
+	},
+	"devDependencies": {
+		"@hono/vite-dev-server": "^0.10.0",
+		"@remix-galaxy/eslint-config": "*",
+		"@remix-galaxy/typescript-config": "*",
+		"@remix-run/dev": "^2.8.1",
+		"@types/react": "^18.2.71",
+		"@types/react-dom": "^18.2.22",
+		"autoprefixer": "^10.4.19",
+		"cross-env": "^7.0.3",
+		"dotenv-cli": "^7.4.1",
+		"esbuild": "^0.20.2",
+		"npm-run-all": "^4.1.5",
+		"postcss": "^8.4.38",
+		"tailwindcss": "^3.4.1",
+		"tsx": "^4.7.1",
+		"typescript": "^5.4.3",
+		"vite": "^5.2.6",
+		"vite-tsconfig-paths": "^4.3.2"
+	},
+	"engines": {
+		"node": ">=20.0.0"
+	}
+}

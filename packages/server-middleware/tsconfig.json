@@ -1,0 +1,9 @@
+{
+	"extends": "@remix-galaxy/typescript-config/server-lib/tsconfig.json",
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"tsBuildInfoFile": "dist/.tsbuildinfo",
+		"rootDir": "src",
+		"outDir": "dist"
+	},
+}

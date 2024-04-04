@@ -1,5 +1,5 @@
 ARG APP_GROUP=playgrounds
-ARG APP_NAME=remix-hono-vite
+ARG APP_NAME=remix-hono-vite-with-internal-packages
 ARG APP_PKG_NAME=@remix-galaxy/$APP_NAME
 
 # base node image

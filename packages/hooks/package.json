@@ -1,0 +1,19 @@
+{
+  "name": "@remix-galaxy/hooks",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@remix-galaxy/eslint-config": "^0.0.0",
+    "@remix-galaxy/typescript-config": "^0.0.0",
+    "typescript": "^5.4.3"
+  }
+}

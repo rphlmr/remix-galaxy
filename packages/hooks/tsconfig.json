@@ -1,0 +1,7 @@
+{
+	"extends": "@remix-galaxy/typescript-config/browser-lib/tsconfig.json",
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"noEmit": true
+	},
+}
