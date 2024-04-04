@@ -14,7 +14,7 @@
 
 ---
 
-> > [!NOTE]
+> [!NOTE]
 > This is a [Turborepo](https://turbo.build/repo) with npm workspaces.
 
 ## What's inside?
